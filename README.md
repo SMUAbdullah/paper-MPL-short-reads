@@ -26,10 +26,10 @@ The codes and data for reproducting the figures presented in the manuscript are 
 
 ## Required software
 
-> [samtools 1.8](https://github.com/samtools/samtools/releases/tag/1.8)
-> [Quasirecomb](https://github.com/cbg-ethz/QuasiRecomb)
-> [BWA](https://github.com/lh3/bwa)
-> [Python 3](https://www.python.org/downloads/)
+> [samtools 1.8](https://github.com/samtools/samtools/releases/tag/1.8)  
+> [Quasirecomb](https://github.com/cbg-ethz/QuasiRecomb)  
+> [BWA](https://github.com/lh3/bwa)  
+> [Python 3](https://www.python.org/downloads/)  
 
 ## Operating system
 All scripts were written and tested on a Linux based Operating System

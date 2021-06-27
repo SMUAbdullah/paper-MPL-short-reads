@@ -12,8 +12,8 @@ Syed Muhammad Umer Abdullah<sup>1,2†</sup>, Muhammad Saqib Sohail<sup>1†</su
 <sup>5</sup> School of Medical Sciences, University of New South Wales, Sydney, New South Wales, Australia  
 <sup>6</sup> Department of Physics and Astronomy, University of California, Riverside, Riverside, CA, USA  
 <sup>7</sup> Department of Chemical and Biological Engineering, The Hong Kong University of Science and Technology, Hong Kong, China  
-<sup>*</sup> Corresponding author: E-mail: [m.mckay@ust.hk](mailto:m.mckay@ust.hk)
-† These authors contributed equally to this study and share first authorship.
+<sup>*</sup> Corresponding author: E-mail: [m.mckay@ust.hk](mailto:m.mckay@ust.hk)  
+† These authors contributed equally to this study and share first authorship.  
 ‡ Joint senior authors.
 
 # Contents

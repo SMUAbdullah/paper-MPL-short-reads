@@ -3,7 +3,7 @@
 This repository contains the MPL-R pipeline and the codes and data for reproducting the results presented in the manuscript
 
 ### Linkage-aware inference of fitness from short-read time-series genomic data  
-Syed Muhammad Umer Abdullah <sup>1,2</sup>, Muhammad Saqib Sohail<sup>1</sup>, Raymond H. Y. Louie<sup>1,3,4,5</sup>, John P. Barton<sup>6</sup>, and Matthew R. McKay<sup>1,7</sup>
+Syed Muhammad Umer Abdullah<sup>1,2†</sup>, Muhammad Saqib Sohail<sup>1†</sup>, Raymond H. Y. Louie<sup>1,3,4,5</sup>, John P. Barton<sup>6‡</sup>, and Matthew R. McKay<sup>1,7\*‡</sup>
 
 <sup>1</sup> Department of Electronic and Computer Engineering, Hong Kong University of Science and Technology  
 <sup>2</sup> Institute for Advanced Study, Hong Kong University of Science and Technology  

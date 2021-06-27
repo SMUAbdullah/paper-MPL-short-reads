@@ -18,7 +18,7 @@ Syed Muhammad Umer Abdullah<sup>1,2†</sup>, Muhammad Saqib Sohail<sup>1†</su
 
 ## MPL-R pipeline
 
-The MPL-R pipeline can be found in the directory `src`. Example data is present in the directory `data`. The pipeline can be run on the experimental data by running the file `src\MPL-R.sh`.
+The MPL-R pipeline can be found in the directory `src`. Example data is present in the directory `data`. The pipeline can be run on the experimental data by running the file `src/MPL-R.sh`.
 
 ### Required software
 

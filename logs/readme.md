@@ -1,1 +1,1 @@
-This directory stores the logs for the MPL-R pipeline.
+This directory stores the logs of the MPL-R pipeline.

@@ -5,14 +5,17 @@ This repository contains the MPL-R pipeline and the codes and data for reproduct
 ### Linkage-aware inference of fitness from short-read time-series genomic data  
 Syed Muhammad Umer Abdullah<sup>1,2†</sup>, Muhammad Saqib Sohail<sup>1†</sup>, Raymond H. Y. Louie<sup>1,3,4,5</sup>, John P. Barton<sup>6‡</sup>, and Matthew R. McKay<sup>1,7\*‡</sup>
 
-<sup>1</sup> Department of Electronic and Computer Engineering, Hong Kong University of Science and Technology  
-<sup>2</sup> Institute for Advanced Study, Hong Kong University of Science and Technology  
-<sup>3</sup> Kirby Institute, University of New South Wales  
-<sup>4</sup> School of Medical Sciences, University of New South Wales  
-<sup>5</sup> Department of Chemical and Biological Engineering, Hong Kong University of Science and Technology  
-<sup>6</sup> Department of Physics and Astronomy, University of California, Riverside  
-\* Equal contributions  
-<sup>#</sup> correspondence to [m.mckay@ust.hk](mailto:m.mckay@ust.hk) and [john.barton@ucr.edu](mailto:john.barton@ucr.edu)  
+<sup>1</sup> Department of Electronic and Computer Engineering, The Hong Kong University of Science and Technology, Hong Kong, China
+<sup>2</sup> State Key Laboratory of Emerging Infectious Diseases, Carol Yu Centre for Infection, Department of Microbiology, Li Ka Shing Faculty of Medicine, The University of Hong Kong, Pokfulam, Hong Kong, China
+<sup>3</sup> Institute for Advanced Study, Hong Kong University of Science and Technology, Hong Kong, China
+<sup>4</sup> The Kirby Institute, University of New South Wales, Sydney, New South Wales, Australia
+<sup>5</sup> School of Medical Sciences, University of New South Wales, Sydney, New South Wales, Australia
+<sup>6</sup> Department of Physics and Astronomy, University of California, Riverside, Riverside, CA, USA
+<sup>7</sup> Department of Chemical and Biological Engineering, The Hong Kong University of Science and Technology, Hong Kong, China
+
+<sup>*</sup> Corresponding author: E-mail: [m.mckay@ust.hk](mailto:m.mckay@ust.hk)
+† These authors contributed equally to this study and share first authorship.
+‡ Joint senior authors.
 
 # Contents
 

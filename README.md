@@ -30,10 +30,6 @@ The MPL-R pipeline can be found in the directory `src`. Example data is present 
 ### Operating system
 All scripts were written and tested on a Linux based Operating System
 
-## Manuscript figures
-
-The codes and data for reproducting the figures presented in the manuscript are given in the corresponding directories. For convenience, `.mat` files are provided for the data used in the figures, along with the codes used to generate the `.mat` files.
-
 ## License
 This repository is dual licensed as [GPL-3.0](https://github.com/SMUAbdullah/paper-MPL-short-reads/blob/master/LICENSE-GPL) (source code) and [CC0 1.0](https://github.com/SMUAbdullah/paper-MPL-short-reads/blob/master/LICENSE-CC0) (figure and documentation)
 

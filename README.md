@@ -26,11 +26,8 @@ The MPL-R pipeline can be found in the directory `src`. Example data is present 
 > [Quasirecomb](https://github.com/cbg-ethz/QuasiRecomb)  
 > [BWA](https://github.com/lh3/bwa)  
 > [MAFFT](https://mafft.cbrc.jp/alignment/software/)  
-> [Python 3](https://www.python.org/downloads/)  
-> >[pysam](https://pypi.org/project/pysam/)  
-> >[numpy](https://pypi.org/project/numpy/)  
-> [MATLAB](https://www.mathworks.com/products/get-matlab.html)  
-> > [Bioinformatics toolbox](https://www.mathworks.com/products/bioinfo.html)  
+> [Python 3](https://www.python.org/downloads/) with [pysam](https://pypi.org/project/pysam/) and [numpy](https://pypi.org/project/numpy/)  libraries
+> [MATLAB](https://www.mathworks.com/products/get-matlab.html) with [Bioinformatics toolbox](https://www.mathworks.com/products/bioinfo.html)  
 
 ### Operating system
 All scripts were written and tested on a Linux based Operating System

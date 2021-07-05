@@ -27,8 +27,8 @@ The MPL-R pipeline can be found in the directory `src`. Example data is present 
 > [BWA](https://github.com/lh3/bwa)  
 > [MAFFT](https://mafft.cbrc.jp/alignment/software/)  
 > [Python 3](https://www.python.org/downloads/)  
-> >[pysam](https://pypi.org/project/pysam/)
-> >[numpy](https://pypi.org/project/numpy/)
+> >[pysam](https://pypi.org/project/pysam/)  
+> >[numpy](https://pypi.org/project/numpy/)  
 > [MATLAB](https://www.mathworks.com/products/get-matlab.html)  
 > > [Bioinformatics toolbox](https://www.mathworks.com/products/bioinfo.html)  
 

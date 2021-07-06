@@ -1,1 +1,1 @@
-This directory contains the codes required to run the MPL-R pipeline.
+This directory contains the codes required to run the MPL-R pipeline. The main file is `MPL-R.sh` which is used to call all other scripts. It requires the paths to samtools 1.8, Quasirecomb, BWA, MAFFT, Python 3, and MATLAB to run. Please specify the paths of the local installations of these software by editing this file.

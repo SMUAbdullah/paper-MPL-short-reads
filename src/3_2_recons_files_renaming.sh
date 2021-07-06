@@ -6,15 +6,9 @@ this_set=$3
 patient=$4
 protein=$5
 
-BAM_maindir="${output_dir}BAM/"
-
-if [ ! -d ${BAM_maindir} ]; then
-  mkdir ${BAM_maindir}
-fi
-
-BAM_dir="${BAM_maindir}${this_set}/"
-pat_dir="${data_dir}/reads/${this_set}/MSA/${patient}/${protein}/"
-ref_dir="${data_dir}/reads/${this_set}/ref/${patient}_ref/${protein}/"
+BAM_dir="${output_dir}${this_set}_BAM/"
+pat_dir="${data_dir}${this_set}/MSA/${patient}/${protein}/"
+ref_dir="${data_dir}${this_set}/ref/${patient}_ref/${protein}/"
 
 if [ ! -d ${BAM_dir} ]; then
   mkdir ${BAM_dir}

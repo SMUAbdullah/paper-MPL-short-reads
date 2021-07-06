@@ -10,10 +10,10 @@
 # <Directory with samtools>
 # <Output directory>
 # <Set> 
-# <Experiment>
-# <Number of reads in each subset>
-# <Percentage of reads in each subset>
-# <Current ensemble>
+# <patient>
+# <Number of reads in each bootstrap sample>
+# <Percentage of reads in each bootstrap sample>
+# <Current bootstrap sample>
 
 import numpy as np
 import pysam
@@ -26,19 +26,29 @@ codefile=sys.argv[1]
 data_dir=sys.argv[2]
 output_dir=sys.argv[3]
 this_set=sys.argv[4]
-experiment=sys.argv[5]
-ens_size=int(sys.argv[6])
-pc=int(sys.argv[7])
-curr_ens=int(sys.argv[8])
+patient=sys.argv[5]
+protein=sys.argv[6]
+bsample_size=int(sys.argv[7])
+pc=int(sys.argv[8])
+curr_bsample=int(sys.argv[9])
 
-mainoutdir0=output_dir+this_set+'_ss'+str(pc)+'_en'+str(curr_ens)
-if(not os.path.isdir(mainoutdir0)):    #check if output directory exists
-    os.mkdir(mainoutdir0)              #create output directory
-mainoutdir=mainoutdir0+'/'+experiment+'/'
-if(not os.path.isdir(mainoutdir)):    #check if output directory exists
-    os.mkdir(mainoutdir)              #create output directory
-    
-maindir=output_dir+this_set+'_BAM/'+experiment
+mainoutdir_main=output_dir+'bsamples'+'/'
+if(not os.path.isdir(mainoutdir_main)):
+    os.mkdir(mainoutdir_main)
+mainoutdir0=mainoutdir_main+this_set+'/'
+if(not os.path.isdir(mainoutdir0)):
+    os.mkdir(mainoutdir0)
+mainoutdir1=mainoutdir0+this_set+'_ss'+str(pc)+'_bsample'+str(curr_bsample)
+if(not os.path.isdir(mainoutdir1)):
+    os.mkdir(mainoutdir1)
+mainoutdir2=mainoutdir1+'/'+patient
+if(not os.path.isdir(mainoutdir2)):
+    os.mkdir(mainoutdir2)
+mainoutdir=mainoutdir2+'/'+protein+'/'
+if(not os.path.isdir(mainoutdir)):
+    os.mkdir(mainoutdir)
+
+maindir=output_dir+'BAM'+'/'+this_set+'_BAM'+'/'+patient+'/'+protein
 fname_count=0
 for dirname in os.listdir(maindir):
     # start_time=time.time()
@@ -60,7 +70,7 @@ for dirname in os.listdir(maindir):
     output, error = process.communicate()
     numreads=float(output)
     
-    ind_vec=np.random.choice(int(numreads),ens_size)
+    ind_vec=np.random.choice(int(numreads),bsample_size)
     unique, counts = np.unique(ind_vec, return_counts=True)
     used_ind=dict(zip(unique, counts))        
     # for each read in BAM file

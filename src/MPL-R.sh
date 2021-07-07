@@ -27,16 +27,16 @@ bsample_size=5000
 bsample_size_percentage=33
 first_bsample=1
 num_bsample=3
-#num_bsample=1
-genome_start=1                # starting index of genome
-genome_end=500                # ending index of genome
+genome_start=1                  # starting index of genome
+genome_end=500                  # ending index of genome
 maximum_sequence_length=1500 		# decides the maximum length of the sequence. User is welcome to adjust based on requirement
-maximum_time_points=40 		# decides the maximum number of time points. User is welcome to adjust based on requirement
-gamma=10 		#regularization parameter
-thresh=0.01        #threshold below which trajectories are considered noise
-: '
+maximum_time_points=40 		      # decides the maximum number of time points. User is welcome to adjust based on requirement
+gamma=10 		                    # regularization parameter
+thresh=0.01                     # threshold below which trajectories are considered noise
+
 for patient in ${patients[@]}
 do
+#--------------------------------------------------------------------
 # Convert FASTQ files to BAM files
 #--------------------------------------------------------------------
 
@@ -53,7 +53,6 @@ do python 1_BAM_subsample.py $samtools_loc $data_dir $output_dir $this_set $pati
 done
 
 #--------------------------------------------------------------------
-
 # Generate files to perform population reconstruction on the bootstrap samples
 #--------------------------------------------------------------------
 
@@ -63,7 +62,6 @@ do python 2_reconstruction_files_gen.py $quasirecomb_loc $output_dir $bash_scrip
 done
 
 #--------------------------------------------------------------------
-
 # Perform population reconstruction on the bootstrap samples (this is a time consuming step, and it is highly recommended that it be performed in parallel to save computation time)
 #--------------------------------------------------------------------
 
@@ -76,11 +74,11 @@ done
 
 #--------------------------------------------------------------------
 done
-'
 
+#--------------------------------------------------------------------
 # Preprocess the reconstructed files for analysis
 #--------------------------------------------------------------------
-: '
+
 cd $script_dir
 matlab -nodisplay -nojvm -nosplash -nodesktop -r "QR_pipeline_func_0_3(\"${data_dir}\",\"${this_set}\",\"${protein}\",\"${bsample_size_percentage}\",\"${maximum_sequence_length}\",\"${maximum_time_points}\",\"${first_bsample}\",\"${num_bsample}\",\"${output_dir}\",\"${bash_scripts_dir}\",\"${MAFFT_loc}\"); exit";
 
@@ -88,8 +86,7 @@ cd $bash_scripts_dir"alignment_script_main_call/${this_set}/consensi_alignment"
 for filename in *
 do ./${filename}
 done
-'
-: '
+
 cd $script_dir
 matlab -nodisplay -nojvm -nosplash -nodesktop -r "QR_pipeline_func_1_4(\"${data_dir}\",\"${this_set}\",\"${protein}\",\"${bsample_size_percentage}\",\"${maximum_sequence_length}\",\"${maximum_time_points}\",\"${first_bsample}\",\"${num_bsample}\",\"${output_dir}\",\"${bash_scripts_dir}\",\"${MAFFT_loc}\"); exit";
 
@@ -100,14 +97,13 @@ done
 
 cd $script_dir
 matlab -nodisplay -nojvm -nosplash -nodesktop -r "QR_pipeline_func_2_5(\"${data_dir}\",\"${this_set}\",\"${protein}\",\"${bsample_size_percentage}\",\"${maximum_sequence_length}\",\"${maximum_time_points}\",\"${first_bsample}\",\"${num_bsample}\",\"${output_dir}\",\"${bash_scripts_dir}\",\"${MAFFT_loc}\"); exit";
-'
-#--------------------------------------------------------------------
 
+#--------------------------------------------------------------------
 # MPL estimation
 #--------------------------------------------------------------------
 
 cd $script_dir
-matlab -nodisplay -nojvm -nosplash -nodesktop -r "MPL_preprocess_6(\"${data_dir}\",\"${this_set}\",\"${protein}\",\"${bsample_size_percentage}\",\"${num_bsample}\",\"${output_dir}\",\"${genome_start}\",\"${genome_end}\",\"${gamma}\",\"${thresh}\"); exit";
+matlab -nodisplay -nojvm -nosplash -nodesktop -r "MPL_6(\"${data_dir}\",\"${this_set}\",\"${protein}\",\"${bsample_size_percentage}\",\"${num_bsample}\",\"${output_dir}\",\"${genome_start}\",\"${genome_end}\",\"${gamma}\",\"${thresh}\"); exit";
 
 #--------------------------------------------------------------------
 

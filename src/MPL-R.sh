@@ -1,14 +1,15 @@
 #!/bin/sh
 
 # Add paths to required software
+# This part has to be filled in by the user
 #--------------------------------------------------------------------
-samtools_loc="/staff/ee/smuabdullah/Desktop/1_Files/samtools-1.8/samtools"
-quasirecomb_loc="/staff/ee/smuabdullah/Desktop/1_Files/QuasiRecomb/QuasiRecomb.jar"
-MAFFT_loc="/staff/ee/smuabdullah/Desktop/1_Files/MAFFT/bin/mafft"
-export PATH=/staff/ee/smuabdullah/Desktop/1_Files/bwa-0.7.17:$PATH
-export PATH=/staff/ee/smuabdullah/Desktop/1_Files/samtools-1.8:$PATH
-export PATH=/local1/staff/ee/smuabdullah/Files/Anaconda3/bin:$PATH
-export PATH=/local/opt/MATLAB/R2017a:$PATH
+samtools_loc=<location of samtools>
+quasirecomb_loc=<location of quasirecomb>
+MAFFT_loc=<location of MAFFT>
+export PATH=<path to BWA>:$PATH
+export PATH=<path to samtools>:$PATH
+export PATH=<path to Python>:$PATH
+export PATH=<path to MATLAB>:$PATH
 #--------------------------------------------------------------------
 
 cd ..
@@ -16,7 +17,6 @@ main_dir=$(pwd)/
 this_set="564"
 protein="synth"
 declare -a patients=("p1" "p2" )
-#declare -a patients=("p1" )
 data_dir=${main_dir}"data/"
 script_dir=${main_dir}"src/"
 output_dir=${main_dir}"output/"
@@ -84,7 +84,7 @@ matlab -nodisplay -nojvm -nosplash -nodesktop -r "QR_pipeline_func_0_3(\"${data_
 
 cd $bash_scripts_dir"alignment_script_main_call/${this_set}/consensi_alignment"
 for filename in *
-do ./${filename}
+do ./${filename} # the user has to manually check if the generated files are complete after running this step. This command has been observed to generated partial files when called from a script, and complete ones when run on the terminal.
 done
 
 cd $script_dir
@@ -92,7 +92,7 @@ matlab -nodisplay -nojvm -nosplash -nodesktop -r "QR_pipeline_func_1_4(\"${data_
 
 cd $bash_scripts_dir"alignment_script_main_call/${this_set}/alignment"
 for filename in *
-do ./${filename}
+do ./${filename} # the user has to manually check if the generated files are complete after running this step. This command has been observed to generated partial files when called from a script, and complete ones when run on the terminal.
 done
 
 cd $script_dir

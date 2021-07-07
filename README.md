@@ -28,6 +28,7 @@ The MPL-R pipeline can be found in the directory `src`. Example data is present 
 > [MAFFT](https://mafft.cbrc.jp/alignment/software/)  
 > [Python 3](https://www.python.org/downloads/) with [pysam](https://pypi.org/project/pysam/) and [numpy](https://pypi.org/project/numpy/) libraries  
 > [MATLAB](https://www.mathworks.com/products/get-matlab.html) with [Bioinformatics toolbox](https://www.mathworks.com/products/bioinfo.html)  
+> [VarScan](https://sourceforge.net/projects/varscan/files/VarScan.v2.3.9.jar/download)  
 
 ### Operating system
 All scripts were written and tested on a Linux based Operating System

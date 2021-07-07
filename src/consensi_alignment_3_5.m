@@ -108,9 +108,9 @@ for dir_num=1:numdir
             fprintf(filecallID,[prot_dirws '/' thispat '_' thisprot '_consens_align' '.sh' '\n']);
 %             fprintf(filecallID,'wait');
 %             fprintf(filecallID,'\n');
-            fprintf(filecallID,'exit 0');
         end
-    end
+    end    
+    fprintf(filecallID,'exit 0');
 end
 fprintf(filemaincallID,'exit 0');
 fclose(filemaincallID);

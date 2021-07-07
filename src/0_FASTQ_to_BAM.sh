@@ -13,8 +13,8 @@ if [ ! -d ${BAM_maindir} ]; then
 fi
 
 BAM_dir="${BAM_maindir}${this_set}/"
-pat_dir="${data_dir}/reads/${this_set}/MSA/${patient}/${protein}/"
-ref_dir="${data_dir}/reads/${this_set}/ref/${patient}_ref/${protein}/"
+pat_dir="${data_dir}reads/${this_set}/MSA/${patient}/${protein}/"
+ref_dir="${data_dir}reads/${this_set}/ref/${patient}_ref/${protein}/"
 
 if [ ! -d ${BAM_dir} ]; then
   mkdir ${BAM_dir}

@@ -89,7 +89,7 @@ for dir_num=1:numdir
                 out_file=[tp_dirw '/' thistp '.fasta'];
                 
                 code_loc=MAFFTloc;
-                command = [code_loc ' --amino --thread -1 --addfragments "' tgt_file '" "' ref_file '" > "' out_file '"'];
+                command = [code_loc ' --amino --keeplength --thread -1 --addfragments "' tgt_file '" "' ref_file '" > "' out_file '"'];
                 
                 fileID = fopen([prot_dirws '/' thistp '_align' '.sh'],'w');
                 fprintf(fileID,'#!/bin/sh\n\n');

@@ -4,7 +4,7 @@ function QR_pipeline_func_2_5(data_dir,this_set,protein,bsample_size_percentage,
 
 param_init_3_1;
 
-% append_ref_5_1;
+append_ref_5_1;
 
 final_folder_construction_5_2;
 

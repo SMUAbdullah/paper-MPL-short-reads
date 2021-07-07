@@ -4,12 +4,12 @@ function QR_pipeline_func_0_3(data_dir,this_set,protein,bsample_size_percentage,
 
 param_init_3_1;
 
-% recons_files_renaming_3_2;
+recons_files_renaming_3_2;
 
-% preimpute_3_3;
-% 
-% consensus_from_recons_3_4;
-% 
+preimpute_3_3;
+
+consensus_from_recons_3_4;
+
 consensi_alignment_3_5;
 
 end

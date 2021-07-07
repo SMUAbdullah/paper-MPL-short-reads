@@ -48,7 +48,7 @@ mainoutdir=mainoutdir2+'/'+protein+'/'
 if(not os.path.isdir(mainoutdir)):
     os.mkdir(mainoutdir)
 
-maindir=output_dir+'BAM'+'/'+this_set+'_BAM'+'/'+patient+'/'+protein
+maindir=output_dir+'BAM'+'/'+this_set+'/'+patient+'/'+protein
 fname_count=0
 for dirname in os.listdir(maindir):
     # start_time=time.time()

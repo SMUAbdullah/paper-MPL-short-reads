@@ -18,7 +18,7 @@ Syed Muhammad Umer Abdullah<sup>1,2†</sup>, Muhammad Saqib Sohail<sup>1†</su
 
 ## MPL-R pipeline
 
-The MPL-R pipeline can be found in the directory `src`. Example data is present in the directory `data`. The pipeline can be run on the example data by running the file `src/MPL-R.sh`. Output files generated during each step of the pipeline are stored in the directory `output`. The selection coefficient estimates are stored in the directory `output/s_estimates`. Two files, `s_MPL_R_*.txt` and `s_MPL_iden_*.txt`, are generated for the selection coefficient estimates for each patient. `s_MPL_R_*.txt` stores the selection coefficients estimated by considering genetic linkage, and `s_MPL_iden_*.txt` stores the selection coefficients estimated by ignoring genetic linkage.
+The MPL-R pipeline can be found in the directory `src`. Example data is present in the directory `data` which needs to be extracted before running the pipeline. The pipeline can be run on the example data by running the file `src/MPL-R.sh`. Output files generated during each step of the pipeline are stored in the directory `output`. The selection coefficient estimates are stored in the directory `output/s_estimates`. Two files, `s_MPL_R_*.txt` and `s_MPL_iden_*.txt`, are generated for the selection coefficient estimates for each patient. `s_MPL_R_*.txt` stores the selection coefficients estimated by considering genetic linkage, and `s_MPL_iden_*.txt` stores the selection coefficients estimated by ignoring genetic linkage.
 
 ### Required software
 
@@ -34,9 +34,10 @@ The MPL-R pipeline can be found in the directory `src`. Example data is present 
 All scripts were written and tested on a Linux based Operating System
 
 ### Known issues and troubleshooting
-- The naming convention for the input directories is `data/reads/MSA/<patient>/<protein>`. Any deviation from this might lead to errors.
-- The naming convention for the input FASTQ files is `<patient>_<protein>_t<time-point>.fq`.  Any deviation from this might lead to errors.
+- The naming convention for the input directories is `data/reads/MSA/<patient>/<protein>`, as demonstrated in the naming of the example data. Any deviation from this might lead to errors.
+- The naming convention for the input FASTQ files is `<patient>_<protein>_t<time-point>.fq`, as demonstrated in the naming of the example data.  Any deviation from this might lead to errors.
 - The script `0_FASTQ_to_BAM.sh` creates a subdirectory `BAM` in the directory `output`. Further subdirectories are created for the dataset, patient, protein, and time-point. The final output are 3 files, `<patient>_<protein>_t<time-point>_sorted.bam`, `<patient>_<protein>_t<time-point>_sorted.bam.bai`, and `<patient>_<protein>_t<time-point>_sorted_depth.txt`, created in the subdirectory for the time-point, i.e. `output/BAM/<dataset>/<patient>/<protein>/<patient>_<protein>_t<time-point>`. If these directories or files are not created or there are incorrect file extensions, this could indicate an issue with running the script. As a first step, please double check that the naming convention is followed exactly as in the directory `data/reads` and all files have the same extensions as the example data. Afterwards, please check that the exact versions of samtools and BWA are used as mentioned in the section `Required software`. If both these checks have been performed and there are issues, feel free to report the issue via email or GitHub.
+- The script `AnalysisMPL_10.m` gives the error `'NumPat = 0. Check initialization settings and run again.` when it cannot find the FASTA files of the reconstructed sequences for any patient. This can happen if this script is run before one or more of the previous scripts has finished running or if there is an issue with the location of the files. Before running this script, please ensure that all previous scripts have finished running without errors. Please also avoid manually changing the location or name of any directory after running previous scripts, otherwise this script will return the error mentioned before.
 
 ## License
 This repository is dual licensed as [GPL-3.0](https://github.com/SMUAbdullah/paper-MPL-short-reads/blob/master/LICENSE-GPL) (source code) and [CC0 1.0](https://github.com/SMUAbdullah/paper-MPL-short-reads/blob/master/LICENSE-CC0) (figure and documentation)

@@ -18,13 +18,13 @@ Syed Muhammad Umer Abdullah<sup>1,2†</sup>, Muhammad Saqib Sohail<sup>1†</su
 
 ## MPL-R pipeline
 
-The MPL-R pipeline can be found in the directory `src`. Example data is present in the directory `data`. The pipeline can be run on the example data by running the file `src/MPL-R.sh`.
+The MPL-R pipeline can be found in the directory `src`. Example data is present in the directory `data`. The pipeline can be run on the example data by running the file `src/MPL-R.sh`. Output files generated during each step of the pipeline are stored in the directory `output`. The selection coefficient estimates are stored in the directory `output\s_estimates`. Two files are generated for the selection coefficient estimates, `s_MPL_R_*.txt` and `s_MPL_iden_*.txt`. `s_MPL_R_*.txt` stores the selection coefficients estimated by considering genetic linkage, and `s_MPL_iden_*.txt` stores the selection coefficients estimated by ignoring genetic linkage.
 
 ### Required software
 
 > [samtools 1.8](https://github.com/samtools/samtools/releases/tag/1.8)  
 > [Quasirecomb](https://github.com/cbg-ethz/QuasiRecomb)  
-> [BWA](https://github.com/lh3/bwa)  
+> [BWA-0.7.17](https://github.com/lh3/bwa/releases/tag/v0.7.17)  
 > [MAFFT](https://mafft.cbrc.jp/alignment/software/)  
 > [Python 3](https://www.python.org/downloads/) with [pysam](https://pypi.org/project/pysam/) and [numpy](https://pypi.org/project/numpy/) libraries  
 > [MATLAB](https://www.mathworks.com/products/get-matlab.html) with [Bioinformatics toolbox](https://www.mathworks.com/products/bioinfo.html)  

@@ -24,12 +24,10 @@
 % 5. Calculating MPL estimates
 % 6. Save estimates, other data to file
 % function analysisStep1_v2(fileNameContainingDirPath, priorConstSC, FLAG_stratonovich, FLAG_MarkAccessibility, FLAG_SaveFile, FLAG_SaveIntCovMtx, FLAG_useFreqEntry, FLAG_troubleShoot, FLAG_linearInt);
-function analysisStep1_v2_prefilt_thresh_MPL(fileNameContainingDirPath, priorConst, FLAG_vector,refernceSequence,thisSet,patID,readsperseq,noisethresh, varargin)
+function analysis_MPL_10_1(fileNameContainingDirPath,pathdirw0,pathdir_est,priorConst,FLAG_vector,refernceSequence,thisSet,patID,thisProt,noisethresh,varargin)
 
-patient=str2double(patID(1,3:end));
-
-oneptdir=['/local1/staff/ee/smuabdullah/Time_Series/Analysis/Sites500/PosDelSel/Set' num2str(thisSet) '/1ptssve/'];
-q_reads=dlmread([oneptdir '1pts_set' num2str(thisSet) '_c' num2str(readsperseq) '_iter' num2str(patient) '.txt']);
+oneptdir=[pathdirw0 'mut_aft/' num2str(thisSet) '/' patID '/' thisProt '/freqs_trajs/'];
+q_reads=readmatrix([oneptdir '1pts_set' num2str(thisSet) '_' patID '.txt']);
 vld_ind=~((abs(max(q_reads)-min(q_reads))<=noisethresh)&((max(q_reads)==1)|(min(q_reads)==0)));
 [numtp,loci]=size(q_reads);
 
@@ -87,7 +85,7 @@ userRefSequence = refernceSequence; % comment after testing
 
 FLAG_SaveFile = true;
 % --------------------------  initializations -----------------------------
-mainDir = pwd;
+% mainDir = pwd;
 if(ispc)
     chosenSlash = '\';
 elseif(isunix)
@@ -100,7 +98,7 @@ end
 
 %----------------------------------------------------------------------
 % 1.1 load dir names
-[dirNameData, dirNameAnalysis] = loadDirNames(fileNameContainingDirPath);
+[~, dirNameAnalysis] = loadDirNames(fileNameContainingDirPath);
 
 runAnalysisCode = true;
 if(exist([dirNameAnalysis 'Analysis_Misc' chosenSlash], 'dir') == 0)
@@ -199,10 +197,10 @@ if(runAnalysisCode)
             thisFileNameHUFiles = fileNameHUFilesCell{indOfFileToLoad};
             
             % load the aligned haplotypes
-            [Header, seqNT_All] = fastaread1([dirNameAnalysis thisFileNameHUFiles]);
+            [Header, seqNT_All] = fastaread([dirNameAnalysis thisFileNameHUFiles]);
             % remove 1st seq as that is ref seq (used for alignment purpose only)
-            HeaderRefSeq = Header{1};
-            refSeq = seqNT_All{1};
+%             HeaderRefSeq = Header{1};
+%             refSeq = seqNT_All{1};
             Header = Header(2:end);
             seqNT_All = seqNT_All(2:end);
             
@@ -268,7 +266,7 @@ if(runAnalysisCode)
             end
             
             
-            msaNTInt = nt2int1(msaNT);
+            msaNTInt = nt2int(msaNT);
             numSitesNT = size(msaNT,2);
             numUniqueSeqs = size(msaNT,1);
             
@@ -289,7 +287,7 @@ if(runAnalysisCode)
             msaNT_Bin = -1*ones(numUniqueSeqs, numSitesNTExteded);
             
             if(FLAG_UserProvidedRefSeq == true)
-                referenceSequenceForConversion = nt2int1(userRefSequence);
+                referenceSequenceForConversion = nt2int(userRefSequence);
             elseif(FLAG_UserProvidedRefSeq == false)
                 referenceSequenceForConversion = consensusSeqTP1;
             end
@@ -342,7 +340,7 @@ if(runAnalysisCode)
                 
                 if(sum(thisTemp > 1) > 0)
                     disp('Calculated q11 is greater than 1...')
-                    thisTemp(thisTemp > 1) - 1
+                    disp(thisTemp(thisTemp > 1) - 1);
                     pause
                 end
                 
@@ -360,102 +358,7 @@ if(runAnalysisCode)
             %-----------------------for Epistasis only---------------------
             % 2.2.2 Calculate 3 and 4-point freqs
             if(FLAG_Epi == true)
-                
-                % 2.2.2.1 reshape q11 in vector form to concatenate with q (needed
-                % for inferring epistasis)
-                
-                % first and second rows of twoPointSiteIDs contain the site IDs of
-                % 2-point freq entries.
-                
-                twoPointSiteIDs = [secondInd(firstInd > secondInd);
-                    firstInd(firstInd > secondInd)];
-                numTwoPointSiteIDs = size(twoPointSiteIDs, 2);
-                numTotalTwoPointEntries = numSitesNTExteded*(numSitesNTExteded-1)/2;
-                
-                ww = reshape(repmat((numSitesNT - (1:numSitesNT-1))', 1, 1)', 1, (numSitesNT-1));
-                ww(1) = 0;
-                www = cumsum(ww);
-                
-                if(~isempty(twoPointSiteIDs))
-                    twoPointSiteIDs = [twoPointSiteIDs; www(twoPointSiteIDs(1,:))];
-                    indOfNonZeroTwoPointInB_sp = sum(twoPointSiteIDs(2:3,:)) - 1;
-                else
-                    indOfNonZeroTwoPointInB_sp = [];
-                end
-                
-                
-                
-                % reshape the upper triangle of q11_sp in vetor form to make the
-                % vetor of single and double mutant freqs
-                
-                b_vec = zeros(1, numSitesNTExteded*(numSitesNTExteded-1)/2);
-                
-                % replace this with
-                startInd = 1;
-                for i = 1:numSitesNTExteded-1
-                    stopInd = startInd + numSitesNTExteded-i - 1;
-                    b_vec(startInd:stopInd) = q11_sp(i,i+1:end);
-                    startInd = stopInd + 1;
-                end
-                
-                if(bsamp == 1)
-                    b_sp = sparse(b_vec);
-                else
-                    b_sp = b_sp + sparse(b_vec);
-                end
-                
-                % 3.3 calculate 3-point freqs
-                q111_vec = zeros(1, indOfNonZeroQsLen*numTwoPointSiteIDs);
-                firstInd_q111 = zeros(1, indOfNonZeroQsLen*numTwoPointSiteIDs);
-                secondInd_q111 = zeros(1, indOfNonZeroQsLen*numTwoPointSiteIDs);
-                counter111 = 0;
-                for kk = 1:indOfNonZeroQsLen
-                    firstSiteInd = indOfNonZeroQs(kk);
-                    for j = 1:numTwoPointSiteIDs
-                        secondSiteInd = twoPointSiteIDs(1,j);
-                        thirdSiteInd = twoPointSiteIDs(2,j);
-                        counter111 = counter111 + 1;
-                        q111_vec(counter111) = (thisSeqFreqVec.*msaNT_Bin(:,firstSiteInd)')*(msaNT_Bin(:,secondSiteInd).*msaNT_Bin(:,thirdSiteInd));
-                        
-                        firstInd_q111(counter111) = firstSiteInd;
-                        secondInd_q111(counter111) = indOfNonZeroTwoPointInB_sp(j);
-                    end
-                end
-                
-                if(bsamp == 1)
-                    q111_sp = sparse(firstInd_q111(1:counter111), secondInd_q111(1:counter111), q111_vec(1:counter111), numSitesNTExteded, ((numSitesNTExteded+1)*numSitesNTExteded/2) - numSitesNTExteded);
-                else
-                    q111_sp = q111_sp + sparse(firstInd_q111(1:counter111), secondInd_q111(1:counter111), q111_vec(1:counter111), numSitesNTExteded, ((numSitesNTExteded+1)*numSitesNTExteded/2) - numSitesNTExteded);
-                end
-                numTwoPointSiteIDs;
-                
-                % 3.4 calculate 4-point freqs
-                q1111_vec = zeros(1, numTwoPointSiteIDs*numTwoPointSiteIDs);
-                firstInd_q1111 = zeros(1, numTwoPointSiteIDs*numTwoPointSiteIDs);
-                secondInd_q1111 = zeros(1, numTwoPointSiteIDs*numTwoPointSiteIDs);
-                counter1111 = 0;
-                for kk = 1:numTwoPointSiteIDs
-                    firstSiteInd = twoPointSiteIDs(1,kk);
-                    secondSiteInd = twoPointSiteIDs(2,kk);
-                    for j = 1:numTwoPointSiteIDs
-                        thirdSiteInd = twoPointSiteIDs(1,j);
-                        fourthSiteInd = twoPointSiteIDs(2,j);
-                        
-                        counter1111 = counter1111 + 1;
-                        q1111_vec(counter1111) = (thisSeqFreqVec.*msaNT_Bin(:,firstSiteInd)')*(msaNT_Bin(:,secondSiteInd).*msaNT_Bin(:,thirdSiteInd).*msaNT_Bin(:,fourthSiteInd));
-                        
-                        firstInd_q1111(counter1111) = indOfNonZeroTwoPointInB_sp(kk);
-                        secondInd_q1111(counter1111) = indOfNonZeroTwoPointInB_sp(j);
-                    end
-                end
-                
-                if(bsamp == 1)
-                    q1111_sp = sparse(firstInd_q1111(1:counter1111), secondInd_q1111(1:counter1111), q1111_vec(1:counter1111), ((numSitesNTExteded+1)*numSitesNTExteded/2) - numSitesNTExteded, ((numSitesNTExteded+1)*numSitesNTExteded/2) - numSitesNTExteded);
-                else
-                    q1111_sp = q1111_sp + sparse(firstInd_q1111(1:counter1111), secondInd_q1111(1:counter1111), q1111_vec(1:counter1111), ((numSitesNTExteded+1)*numSitesNTExteded/2) - numSitesNTExteded, ((numSitesNTExteded+1)*numSitesNTExteded/2) - numSitesNTExteded);
-                end
-            end
-            
+            end            
         end
         
         % distance term for for recomb
@@ -487,12 +390,12 @@ if(runAnalysisCode)
         end
         
         if((sum(q_sp > 1) > 0))
-            q_sp(q_sp > 1) - 1
+            disp(q_sp(q_sp > 1) - 1);
             
             pause
         end
         if(sum(q_sp < 0) > 0)
-            q_sp(q_sp < 0)
+            disp(q_sp(q_sp < 0));
             
             pause
         end
@@ -699,8 +602,8 @@ if(runAnalysisCode)
                         cov4RecombTerm_Epi = cov4RecombTerm_Epi + cov4RecombTerm_sp*timeStep(tp-1);
                         
                         last_b_sp = this_b_sp;
-                        last_q111_sp = this_q111_sp;
-                        last_q1111_sp = this_q1111_sp;
+%                         last_q111_sp = this_q111_sp;
+%                         last_q1111_sp = this_q1111_sp;
                         last_x_sp = this_x_sp;
                         last_x11_sp = this_x11_sp;
                     end
@@ -792,13 +695,13 @@ if(runAnalysisCode)
                     disp('Error: sumOfAbsIntCovEntriesDiag1 < 0')
                     disp(['      at ' num2str(temp)])
                     
-                    q_All(:,temp)
-                    intCovMtx(temp, temp)
-                    thisCovMtx(temp, temp)
-                    lastCovMtx(temp, temp)
-                    temp
-                    q11_sp(temp)
-                    q_sp(temp) - 1
+                    disp(q_All(:,temp));
+                    disp(intCovMtx(temp, temp));
+                    disp(thisCovMtx(temp, temp));
+                    disp(lastCovMtx(temp, temp));
+                    disp(temp);
+                    disp(q11_sp(temp));
+                    disp(q_sp(temp) - 1);
                     pause
                 end
                 
@@ -890,14 +793,14 @@ if(runAnalysisCode)
     thisFileNameHUFiles = fileNameHUFilesCell{1};
     indOfDash = strfind(thisFileNameHUFiles, '_');
     
-    fileNameSelEst = ['SelEst_filt_thresh_' thisFileNameHUFiles(1:indOfDash(2)-1) '_' convention '_gamma' num2str(priorConstSC) '.txt'];
-    fileNameSelEstSL = ['SelEstSL_filt_thresh_' thisFileNameHUFiles(1:indOfDash(2)-1) '_' convention '_gamma' num2str(priorConstSC) '.txt'];
+    fileNameSelEst = ['s_MPL_R_' thisFileNameHUFiles(1:indOfDash(2)-1) '_' convention '_gamma' num2str(priorConstSC) '.txt'];
+    fileNameSelEstSL = ['s_MPL_iden_' thisFileNameHUFiles(1:indOfDash(2)-1) '_' convention '_gamma' num2str(priorConstSC) '.txt'];
     if(FLAG_Epi == true)
         fileNameSelEstEpi = ['SelEstEpi_' thisFileNameHUFiles(1:indOfDash(2)-1) '_' convention '_gamma' num2str(priorConstSC) '_' num2str(priorConstEpi) '.txt'];
     end
     fileNameIntCovMtx = ['IntCovMtx_filt_thresh_' thisFileNameHUFiles(1:indOfDash(2)-1) '_' convention '_gamma' num2str(priorConstSC) '.txt'];
-    fileNameAllTrajs = ['AllTrajs_filt_thresh_' thisFileNameHUFiles(1:indOfDash(2)-1) '.txt'];
-    fileNameAllTrajsR = ['AllTrajsWithTimeInfo_filt_thresh_' thisFileNameHUFiles(1:indOfDash(2)-1) '.txt'];
+%     fileNameAllTrajs = ['AllTrajs_filt_thresh_' thisFileNameHUFiles(1:indOfDash(2)-1) '.txt'];
+%     fileNameAllTrajsR = ['AllTrajsWithTimeInfo_filt_thresh_' thisFileNameHUFiles(1:indOfDash(2)-1) '.txt'];
     fileNameAccessEst = ['AccessibilityMPL_filt_thresh_' thisFileNameHUFiles(1:indOfDash(2)-1) '_' convention '.txt'];
     fileNameAccessEstEpi = ['AccessibilityMPLEpi_' thisFileNameHUFiles(1:indOfDash(2)-1) '_' convention '.txt'];
     
@@ -928,7 +831,7 @@ if(runAnalysisCode)
         disp(' ')
         disp('Calculate accessibility...NOTE: Accessibility code works for additive model with < 5000 poly sites')
         
-        [selcSites, wellCondSites, illCondSites, cluster] = findIndColsOfHmat(intCovMtx);
+        [~, wellCondSites, illCondSites, cluster] = findIndColsOfHmat(intCovMtx);
         
         wellCondSitesLen = length(wellCondSites);
         illCondSitesLen = length(illCondSites);
@@ -966,12 +869,12 @@ if(runAnalysisCode)
         if(exist([dirNameAnalysis 'Estimates' chosenSlash], 'dir') == 0)
             mkdir([dirNameAnalysis 'Estimates' chosenSlash])
         end
-        dlmwrite([dirNameAnalysis 'Estimates' chosenSlash  fileNameAccessEst], accDataMtxToWrite);
+        writematrix(accDataMtxToWrite, [dirNameAnalysis 'Estimates' chosenSlash  fileNameAccessEst]);
         
         % for Epi
         if(FLAG_Epi == true)
             if(size(intCovMtxEpi, 1) < 50)
-                [selcSitesEpi, wellCondSitesEpi, illCondSitesEpi, clusterEpi] = findIndColsOfHmat(intCovMtxEpi);
+                [~, wellCondSitesEpi, illCondSitesEpi, clusterEpi] = findIndColsOfHmat(intCovMtxEpi);
                 
                 wellCondSitesEpiLen = length(wellCondSitesEpi);
                 illCondSitesEpiLen = length(illCondSitesEpi);
@@ -1009,7 +912,7 @@ if(runAnalysisCode)
                 if(exist([dirNameAnalysis 'Estimates' chosenSlash], 'dir') == 0)
                     mkdir([dirNameAnalysis 'Estimates' chosenSlash])
                 end
-                dlmwrite([dirNameAnalysis 'Estimates' chosenSlash  fileNameAccessEstEpi], accDataMtxToWriteEpi);
+                writematrix(accDataMtxToWriteEpi, [dirNameAnalysis 'Estimates' chosenSlash  fileNameAccessEstEpi]);
             else
                 disp('IntCovMtEpi size > 50x50...case not handled, Accessibility not computed.')
             end
@@ -1023,13 +926,13 @@ if(runAnalysisCode)
     % load mutation vectors
     fileNameMutVec = [thisFileNameHUFiles(1:indOfDash(2)-1) '_mutVecs.txt'];
     
-    mutationVectors = dlmread([dirNameAnalysis 'Analysis_Misc' chosenSlash fileNameMutVec]);
+    mutationVectors = readmatrix([dirNameAnalysis 'Analysis_Misc' chosenSlash fileNameMutVec]);
     mutVecWT2Mut = mutationVectors(1,:)';
     mutVecMut2WT = mutationVectors(2,:)';
     
     if(FLAG_Epi == true)
         fileNameMutVecEpi = [thisFileNameHUFiles(1:indOfDash(2)-1) '_mutVecsEpi.txt'];
-        mutationVectorsEpi = dlmread([dirNameAnalysis 'Analysis_Misc' chosenSlash fileNameMutVecEpi]);
+        mutationVectorsEpi = readmatrix([dirNameAnalysis 'Analysis_Misc' chosenSlash fileNameMutVecEpi]);
         mutVecWT2Mut_j = mutationVectorsEpi(1,:)';
         mutVecWT2Mut_i = mutationVectorsEpi(2,:)';
         mutVecMut2WT_iPlusj = mutationVectorsEpi(3,:)';
@@ -1116,40 +1019,39 @@ if(runAnalysisCode)
     if(FLAG_SaveFile)
         fprintf('Saving selection coefficient estimates to file...')
         
-        if(exist([dirNameAnalysis 'Estimates' chosenSlash], 'dir') == 0)
-            mkdir([dirNameAnalysis 'Estimates' chosenSlash])
-        end
+%         if(exist([dirNameAnalysis 'Estimates' chosenSlash], 'dir') == 0)
+%             mkdir([dirNameAnalysis 'Estimates' chosenSlash])
+%         end        
         
-        
-        if(exist([dirNameAnalysis 'Estimates' chosenSlash fileNameSelEst], 'file') == 2)
-            delete([dirNameAnalysis 'Estimates' chosenSlash fileNameSelEst])
+        if(exist([pathdir_est fileNameSelEst], 'file') == 2)
+            delete([pathdir_est fileNameSelEst])
         end
-        if(exist([dirNameAnalysis 'Estimates' chosenSlash fileNameSelEstSL], 'file') == 2)
-            delete([dirNameAnalysis 'Estimates' chosenSlash fileNameSelEstSL])
+        if(exist([pathdir_est fileNameSelEstSL], 'file') == 2)
+            delete([pathdir_est fileNameSelEstSL])
         end
-        dlmwrite([dirNameAnalysis 'Estimates' chosenSlash fileNameSelEst], full(selEst))
-        dlmwrite([dirNameAnalysis 'Estimates' chosenSlash fileNameSelEstSL], full(selEstSL))
+        writematrix(full(selEst), [pathdir_est fileNameSelEst])
+        writematrix(full(selEstSL), [pathdir_est fileNameSelEstSL])
         
         if(FLAG_SaveIntCovMtx == 1)
             if(exist([dirNameAnalysis 'Estimates' chosenSlash fileNameIntCovMtx], 'file') == 2)
                 delete([dirNameAnalysis 'Estimates' chosenSlash fileNameIntCovMtx])
             end
-            dlmwrite([dirNameAnalysis 'Estimates' chosenSlash fileNameIntCovMtx], full(intCovMtx))
+            writematrix(full(intCovMtx), [dirNameAnalysis 'Estimates' chosenSlash fileNameIntCovMtx])
         end
-        q_All = round(q_All*10000)/10000;
+%         q_All = round(q_All*10000)/10000;
         
-        if(exist([dirNameAnalysis 'Estimates' chosenSlash fileNameAllTrajs], 'file') == 2)
-            delete([dirNameAnalysis 'Estimates' chosenSlash fileNameAllTrajs])
-        end
-        dlmwrite([dirNameAnalysis 'Estimates' chosenSlash fileNameAllTrajs], q_All);
-        
-        if(exist([dirNameAnalysis 'Estimates' chosenSlash fileNameAllTrajsR], 'file') == 2)
-            delete([dirNameAnalysis 'Estimates' chosenSlash fileNameAllTrajsR])
-        end
-        dlmwrite([dirNameAnalysis 'Estimates' chosenSlash fileNameAllTrajsR], [uniqueTimePoints' q_All]);
+%         if(exist([dirNameAnalysis 'Estimates' chosenSlash fileNameAllTrajs], 'file') == 2)
+%             delete([dirNameAnalysis 'Estimates' chosenSlash fileNameAllTrajs])
+%         end
+%         dlmwrite([dirNameAnalysis 'Estimates' chosenSlash fileNameAllTrajs], q_All);
+%         
+%         if(exist([dirNameAnalysis 'Estimates' chosenSlash fileNameAllTrajsR], 'file') == 2)
+%             delete([dirNameAnalysis 'Estimates' chosenSlash fileNameAllTrajsR])
+%         end
+%         dlmwrite([dirNameAnalysis 'Estimates' chosenSlash fileNameAllTrajsR], [uniqueTimePoints' q_All]);
         
         if(FLAG_Epi == true)
-            dlmwrite([dirNameAnalysis 'Estimates' chosenSlash fileNameSelEstEpi], full(selEstEpi))
+            writematrix(full(selEstEpi), [dirNameAnalysis 'Estimates' chosenSlash fileNameSelEstEpi])
         end
         
         if(FLAG_troubleShoot == true)
@@ -1164,11 +1066,11 @@ if(runAnalysisCode)
                 delete([dirNameAnalysis 'Estimates' chosenSlash fileNameSelEstNoMu])
             end
             
-            dlmwrite([dirNameAnalysis 'Estimates' chosenSlash fileNameSelEstNoMu], full(selEstNoMu))
+            writematrix(full(selEstNoMu), [dirNameAnalysis 'Estimates' chosenSlash fileNameSelEstNoMu])
             if(exist([dirNameAnalysis 'Estimates' chosenSlash fileNameSelEstSLNoMu], 'file') == 2)
                 delete([dirNameAnalysis 'Estimates' chosenSlash fileNameSelEstSLNoMu])
             end
-            dlmwrite([dirNameAnalysis 'Estimates' chosenSlash fileNameSelEstSLNoMu], full(selEstSLNoMu))
+            writematrix(full(selEstSLNoMu), [dirNameAnalysis 'Estimates' chosenSlash fileNameSelEstSLNoMu])
         end
         disp('done.')
     end

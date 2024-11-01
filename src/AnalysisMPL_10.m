@@ -1,6 +1,10 @@
 %========================== INITIALIZATION ================================
 
 WT_dir=[datadir 'reads/' thisSet '/WT/'];
+pathdir_est=[pathdirw0 's_estimates/'];
+if(exist(pathdir_est, 'dir') == 0)
+    mkdir(pathdir_est)
+end
 
 % choose convention 1: Ito, 2: Stratonovich, 3: Linear interpolation
 % Stratonovich has increased robustness to sampling effects than Ito
@@ -21,7 +25,7 @@ FLAG_MarkAccessibility = false; % KEEP this FALSE for the time being, Accessibil
 
 FLAG_SaveIntCovMtx = false; % SET: will save Integrated Covariance matrix (for debugging only)
 FLAG_useFreqEntry = true;
-FLAG_troubleShoot = true; % SET: saves SelEstNoMu and SelEstSLNoMu
+FLAG_troubleShoot = false; % SET: saves SelEstNoMu and SelEstSLNoMu
 FLAG_Epi = false; % SET: use MPL with epistasis, UNSET: MPL with epistasis not used
 
 textCell{1} = ['dirNamesSet' num2str(thisSet) '_'];
@@ -47,7 +51,7 @@ fileNameFastaFilesWithHU = 'fastaFilesHU.txt';
 meFastaFileToAnalyze = 'fastaFilesToAnalyze.txt'; % right now, these fasta files need to be generated on laptop
 
 FLAG_firstSeqIsRef = true; % set: 1st sequence of every fasta file is reference sequence
-mainDir = pwd;
+mainDir = datadir;
 if(ispc)
     chosenSlash = '\';
 elseif(isunix)
@@ -75,7 +79,7 @@ for pat = 1:numPat
     patID = fileNameContainingDirPath(indOfDash(end-1)+1:indOfDash(end)-1);
     thisProt = fileNameContainingDirPath(indOfDash(end)+1:indOfDot(end)-1);
     
-    WT_file=[WT_dir pat '_WT' '/' thisprot '/' thisProt '_' thisProt '_WT.fa'];
+    WT_file=[WT_dir patID '_WT' '/' thisProt '/' patID '_' thisProt '_WT.fa'];
     [refheader,refernceSequence]=fastaread(WT_file);
     
     disp('-----------------------------------------------------------------')
@@ -88,7 +92,7 @@ for pat = 1:numPat
     %     end
     if(FLAG_Skip == false)
         %analysisStep1_v2(fileNameContainingDirPath, priorConstSC, FLAG_stratonovich, FLAG_MarkAccessibility, FLAG_UserProvidedRefSeq, FLAG_SaveIntCovMtx, FLAG_useFreqEntry, FLAG_troubleShoot, FLAG_linearInt);
-        priorConst = priorConstSC;
+        priorConst = reg;
         FLAG_vector = [FLAG_stratonovich;
             FLAG_MarkAccessibility;
             FLAG_UserProvidedRefSeq;
@@ -97,7 +101,7 @@ for pat = 1:numPat
             FLAG_troubleShoot;
             FLAG_linearInt];
         % no need to specify  FLAG_Epi for MPL without epistasis analyss
-        analysisStep1_v2_prefilt_thresh_MPL(fileNameContainingDirPath, priorConst, FLAG_vector, refernceSequence,thisSet,patID,readsperseq,noisethresh);
+        analysis_MPL_10_1(fileNameContainingDirPath,pathdirw0,pathdir_est,priorConst,FLAG_vector,refernceSequence,thisSet,patID,thisProt,noisethresh);
     else
         disp('...skipping this patient-protien combination...')
     end

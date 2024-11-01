@@ -18,7 +18,7 @@ Syed Muhammad Umer Abdullah<sup>1,2†</sup>, Muhammad Saqib Sohail<sup>1†</su
 
 ## MPL-R pipeline
 
-The MPL-R pipeline can be found in the directory `src`. Example data is present in the directory `data`. The pipeline can be run on the example data by running the file `src/MPL-R.sh`. Output files generated during each step of the pipeline are stored in the directory `output`. The selection coefficient estimates are stored in the directory `output/s_estimates`. Two files are generated for the selection coefficient estimates, `s_MPL_R_*.txt` and `s_MPL_iden_*.txt`. `s_MPL_R_*.txt` stores the selection coefficients estimated by considering genetic linkage, and `s_MPL_iden_*.txt` stores the selection coefficients estimated by ignoring genetic linkage.
+The MPL-R pipeline can be found in the directory `src`. Example data is present in the directory `data`. The pipeline can be run on the example data by running the file `src/MPL-R.sh`. Output files generated during each step of the pipeline are stored in the directory `output`. The selection coefficient estimates are stored in the directory `output/s_estimates`. Two files, `s_MPL_R_*.txt` and `s_MPL_iden_*.txt`, are generated for the selection coefficient estimates for each patient. `s_MPL_R_*.txt` stores the selection coefficients estimated by considering genetic linkage, and `s_MPL_iden_*.txt` stores the selection coefficients estimated by ignoring genetic linkage.
 
 ### Required software
 

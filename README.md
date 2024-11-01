@@ -33,6 +33,9 @@ The MPL-R pipeline can be found in the directory `src`. Example data is present 
 ### Operating system
 All scripts were written and tested on a Linux based Operating System
 
+### Known issues and troubleshooting
+
+
 ## License
 This repository is dual licensed as [GPL-3.0](https://github.com/SMUAbdullah/paper-MPL-short-reads/blob/master/LICENSE-GPL) (source code) and [CC0 1.0](https://github.com/SMUAbdullah/paper-MPL-short-reads/blob/master/LICENSE-CC0) (figure and documentation)
 

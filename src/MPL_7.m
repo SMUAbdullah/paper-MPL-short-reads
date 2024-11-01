@@ -1,10 +1,11 @@
-function MPL_preprocess_6(data_dir,this_set,protein,bsample_size_percentage,num_bsample,output_dir,genome_start,genome_end,gamma,thresh)
+function MPL_7(main_dir,data_dir,this_set,protein,bsample_size_percentage,num_bsample,output_dir,genome_start,genome_end,gamma,thresh)
 
 thisSet=char(this_set);
 thisProt=char(protein);
 pathdirw0=char(output_dir);
 factor=char(bsample_size_percentage);
 num_bsample=str2double(num_bsample);
+maindir=char(main_dir);
 datadir=char(data_dir);
 thisGenomicSegStartInd=str2double(genome_start);
 thisGenomicSegStopInd=str2double(genome_end);
@@ -22,10 +23,10 @@ noisethresh=str2double(thresh);
 % [numdir,~]=size(names);
 % bsample_start=str2double(first_bsample);
 
-PreprocessingStep_0_7;
+PreprocessingStep_0_8;
 
-PreProcessingStep_1_8;
+PreProcessingStep_1_9;
 
-AnalysisMPL_9
+AnalysisMPL_10
 
 end

@@ -3,22 +3,38 @@
 This repository contains the MPL-R pipeline and the codes and data for reproducting the results presented in the manuscript
 
 ### Linkage-aware inference of fitness from short-read time-series genomic data  
-Syed Muhammad Umer Abdullah<sup>1,2†</sup>, Muhammad Saqib Sohail<sup>1†</sup>, Raymond H. Y. Louie<sup>1,3,4,5</sup>, John P. Barton<sup>6‡</sup>, and Matthew R. McKay<sup>1,7\*‡</sup>
+Syed Muhammad Umer Abdullah<sup>1,2†</sup>, Muhammad Saqib Sohail<sup>1,3,†</sup>, Raymond H. Y. Louie<sup>1,4,5</sup>, Yanni Sun2</sup>, John P. Barton<sup>6,7‡</sup>, and Matthew R. McKay<sup>1,8,9,10,11\*‡</sup>
 
 <sup>1</sup> Department of Electronic and Computer Engineering, The Hong Kong University of Science and Technology, Hong Kong, China  
-<sup>2</sup> State Key Laboratory of Emerging Infectious Diseases, Carol Yu Centre for Infection, Department of Microbiology, Li Ka Shing Faculty of Medicine, The University of Hong Kong, Pokfulam, Hong Kong, China  
-<sup>3</sup> Institute for Advanced Study, Hong Kong University of Science and Technology, Hong Kong, China  
-<sup>4</sup> The Kirby Institute, University of New South Wales, Sydney, New South Wales, Australia  
-<sup>5</sup> School of Medical Sciences, University of New South Wales, Sydney, New South Wales, Australia  
+<sup>2</sup> Department of Electrical Engineering, City University of Hong Kong, Hong Kong, China
+<sup>3</sup> Department of Computer Science, Bahria University, Lahore, Pakistan
+<sup>4</sup> Institute for Advanced Study, Hong Kong University of Science and Technology, Hong Kong, China
+<sup>5</sup> School of Computer Science and Engineering, University of New South Wales, Sydney, New South Wales, Australia
 <sup>6</sup> Department of Physics and Astronomy, University of California, Riverside, Riverside, CA, USA  
-<sup>7</sup> Department of Chemical and Biological Engineering, The Hong Kong University of Science and Technology, Hong Kong, China  
-<sup>*</sup> Corresponding author: E-mail: [m.mckay@ust.hk](mailto:m.mckay@ust.hk)  
+<sup>7</sup> Department of Computational and Systems Biology, University of Pittsburgh School of Medicine, Pittsburgh, PA, USA
+<sup>8</sup> Department of Chemical and Biological Engineering, The Hong Kong University of Science and Technology, Hong Kong, China  
+<sup>9</sup> Department of Electrical and Electronic Engineering, The University of Melbourne, Melbourne, Victoria, Australia 
+<sup>10</sup> Department of Microbiology and Immunology, University of Melbourne, at The Peter Doherty Institute for Infection and Immunity, Melbourne, Victoria, Australia
+<sup>11</sup> Victorian Infectious Diseases Reference Laboratory (VIDRL), at the Peter Doherty Institute for Infection and Immunity, Melbourne, Victoria, Australia  
+<sup>*</sup> Corresponding author: E-mail: [matthew.mckay@unimelb.edu.au](mailto:matthew.mckay@unimelb.edu.au)  
 † These authors contributed equally to this study and share first authorship.  
 ‡ Joint senior authors.
 
 ## MPL-R pipeline
 
-The MPL-R pipeline can be found in the directory `src`. Example data is present in the directory `data` which needs to be extracted before running the pipeline. The pipeline can be run on the example data by running the file `src/MPL-R.sh`. Output files generated during each step of the pipeline are stored in the directory `output`. The selection coefficient estimates are stored in the directory `output/s_estimates`. Two files, `s_MPL_R_*.txt` and `s_MPL_iden_*.txt`, are generated for the selection coefficient estimates for each patient. `s_MPL_R_*.txt` stores the selection coefficients estimated by considering genetic linkage, and `s_MPL_iden_*.txt` stores the selection coefficients estimated by ignoring genetic linkage.
+### Pipeline location
+The MPL-R pipeline can be found in the directory `src`.
+### Example data
+Example data is present in the directory `data` which needs to be extracted before running the pipeline.
+### Running the pipeline
+- The pipeline can be run on the example data by running the file `src/MPL-R.sh`.
+- The pipeline can also be run via snakemake by typing `snakemake --cores 4` in the main directory.
+### Output files
+- Output files generated during each step of the pipeline are stored in the directory `output`.
+### Selection coefficient estimates
+- The selection coefficient estimates are stored in the directory `output/s_estimates`.
+- Two files, `s_MPL_R_*.txt` and `s_MPL_iden_*.txt`, are generated for the selection coefficient estimates for each patient.
+- `s_MPL_R_*.txt` stores the selection coefficients estimated by considering genetic linkage, and `s_MPL_iden_*.txt` stores the selection coefficients estimated by ignoring genetic linkage.
 
 ### Required software
 

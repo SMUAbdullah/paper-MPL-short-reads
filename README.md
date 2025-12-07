@@ -28,7 +28,7 @@ The MPL-R pipeline can be found in the directory `src`.
 Example data is present in the directory `data` which needs to be extracted before running the pipeline.
 ### Running the pipeline
 - The pipeline can be run on the example data by running the file `src/MPL-R.sh`.
-- The pipeline can also be run via snakemake by typing `snakemake --cores 4` in the main directory.
+- The pipeline can also be run via snakemake by typing `snakemake --cores _n_` in the main directory, where `_n_` is the number of CPU cores the pipeline is run on.
 ### Output files
 - Output files generated during each step of the pipeline are stored in the directory `output`.
 ### Selection coefficient estimates

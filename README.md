@@ -3,7 +3,7 @@
 This repository contains the MPL-R pipeline and the codes and data for reproducting the results presented in the manuscript
 
 ### Linkage-aware inference of fitness from short-read time-series genomic data  
-Syed Muhammad Umer Abdullah<sup>1,2†</sup>, Muhammad Saqib Sohail<sup>1,3,†</sup>, Raymond H. Y. Louie<sup>1,4,5</sup>, Yanni Sun2</sup>, John P. Barton<sup>6,7‡</sup>, and Matthew R. McKay<sup>1,8,9,10,11\*‡</sup>
+Syed Muhammad Umer Abdullah<sup>1,2†</sup>, Muhammad Saqib Sohail<sup>1,3,†</sup>, Raymond H. Y. Louie<sup>1,4,5</sup>, Yanni Sun<sup>2</sup>, John P. Barton<sup>6,7‡</sup>, and Matthew R. McKay<sup>1,8,9,10,11\*‡</sup>
 
 <sup>1</sup> Department of Electronic and Computer Engineering, The Hong Kong University of Science and Technology, Hong Kong, China  
 <sup>2</sup> Department of Electrical Engineering, City University of Hong Kong, Hong Kong, China
@@ -28,7 +28,7 @@ The MPL-R pipeline can be found in the directory `src`.
 Example data is present in the directory `data` which needs to be extracted before running the pipeline.
 ### Running the pipeline
 - The pipeline can be run on the example data by running the file `src/MPL-R.sh`.
-- The pipeline can also be run via snakemake by typing `snakemake --cores _n_` in the main directory, where `_n_` is the number of CPU cores the pipeline is run on.
+- The pipeline can also be run via snakemake by typing `snakemake --cores n` in the main directory, where `n` is the number of CPU cores the pipeline is run on.
 ### Output files
 - Output files generated during each step of the pipeline are stored in the directory `output`.
 ### Selection coefficient estimates

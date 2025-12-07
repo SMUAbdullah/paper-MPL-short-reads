@@ -28,7 +28,7 @@ The MPL-R pipeline can be found in the directory `src`.
 Example data is present in the directory `data` which needs to be extracted before running the pipeline.
 ### Running the pipeline
 - The pipeline can be run on the example data by running the file `src/MPL-R.sh`.
-- The pipeline can also be run via snakemake by typing `snakemake --cores n` in the main directory, where `n` is the number of CPU cores the pipeline is run on.
+- The pipeline can also be run via snakemake by typing `snakemake --cores n` in the main directory, where `n` is the number of available CPU cores.
 ### Output files
 - Output files generated during each step of the pipeline are stored in the directory `output`.
 ### Selection coefficient estimates
@@ -45,6 +45,10 @@ Example data is present in the directory `data` which needs to be extracted befo
 > [Python 3.11.5](https://www.python.org/downloads/) with [pysam](https://pypi.org/project/pysam/) and [numpy](https://pypi.org/project/numpy/) libraries  
 > [MATLAB R2021b](https://www.mathworks.com/products/get-matlab.html) with [Bioinformatics toolbox](https://www.mathworks.com/products/bioinfo.html)  
 > [VarScan v2.3.9](https://sourceforge.net/projects/varscan/files/VarScan.v2.3.9.jar/download)  
+
+### Optional software
+
+> [snakemake v9.14.1](https://snakemake.readthedocs.io/en/stable/getting_started/installation.html) (Only required if running the pipeline via snakemake)
 
 ### Operating system
 All scripts were written and tested on a Linux based Operating System

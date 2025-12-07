@@ -26,6 +26,9 @@ Syed Muhammad Umer Abdullah<sup>1,2†</sup>, Muhammad Saqib Sohail<sup>1,3,†<
 The MPL-R pipeline can be found in the directory `src`.
 ### Example data
 Example data is present in the directory `data` which needs to be extracted before running the pipeline.
+### Before running
+- Please ensure all required software are accessible by the pipeline.
+- Please edit all variables based on the data in use.
 ### Running the pipeline
 - The pipeline can be run on the example data by running the file `src/MPL-R.sh`.
 - The pipeline can also be run via snakemake by typing `snakemake --cores n` in the main directory, where `n` is the number of available CPU cores.
@@ -48,7 +51,7 @@ Example data is present in the directory `data` which needs to be extracted befo
 
 ### Optional software
 
-> [snakemake v9.14.1](https://snakemake.readthedocs.io/en/stable/getting_started/installation.html) (Only required if running the pipeline via snakemake)
+> [snakemake 9.14.1](https://snakemake.readthedocs.io/en/stable/getting_started/installation.html) (Only required if running the pipeline via snakemake)
 
 ### Operating system
 All scripts were written and tested on a Linux based Operating System

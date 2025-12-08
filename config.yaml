@@ -1,6 +1,6 @@
 software_paths:
-  bwa_dir: "/home/smuabdullah/1_Files/bwa-0.7.17"
-  samtools_dir: "/home/smuabdullah/1_Files/EEX101/samtools-1.8"
-  anaconda_dir: "/home/smuabdullah/1_Files/Anaconda3/bin"
-  matlab_dir: "/usr/local/MATLAB/R2021b"
-  mafft_dir: "/home/smuabdullah/1_Files/MAFFT/bin"
+  bwa_dir: "/path/to/bwa-0.7.17"
+  samtools_dir: "/path/to/samtools-1.8"
+  anaconda_dir: "/path/to/Anaconda3/bin"
+  matlab_dir: "/path/to/MATLAB/R2021b"
+  mafft_dir: "/path/to/MAFFT/bin"

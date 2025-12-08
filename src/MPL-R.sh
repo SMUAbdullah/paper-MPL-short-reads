@@ -2,14 +2,8 @@
 
 # Add paths to required software
 #--------------------------------------------------------------------
-quasirecomb_loc="/home/smuabdullah/1_Files/QuasiRecomb.jar"
-varscan_loc="/home/smuabdullah/1_Files/EEX101/04.01_Jan/16-Jan-19/codes/VarScan.v2.3.9.jar"
-: '
-export PATH=/home/smuabdullah/1_Files/bwa-0.7.17:$PATH
-export PATH=/home/smuabdullah/1_Files/EEX101/samtools-1.8:$PATH
-export PATH=/home/smuabdullah/1_Files/Anaconda3/bin:$PATH
-export PATH=/usr/local/MATLAB/R2021b:$PATH
-'
+quasirecomb_loc="/path/to/QuasiRecomb.jar"
+varscan_loc="/path/to/VarScan.v2.3.9.jar"
 #--------------------------------------------------------------------
 # Directory declarations, no need to edit
 #--------------------------------------------------------------------

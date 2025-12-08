@@ -56,13 +56,12 @@ done
 #--------------------------------------------------------------------
 # Perform population reconstruction on the bootstrap samples (this is a time consuming step, and it is highly recommended that it be performed in parallel to save computation time)
 #--------------------------------------------------------------------
-: '
 chmod -R 700 ${bash_scripts_dir}"reconstruction_call/"${this_set}
 cd ${bash_scripts_dir}"reconstruction_call/"${this_set}
 for filename in *
 do ./${filename} # an & sign can be placed after this command. It is used for running the commands in parallel. It is recommended to first test the code in serial. After testing, the code can be run in parallel. Running multiple processes in parallel without testing can lead to the creation of a number of unwanted processes which are difficult to kill, hence it is a good practice to test in serial first.
 wait
-done'
+done
 #--------------------------------------------------------------------
 done
 # Preprocess the reconstructed files for analysis

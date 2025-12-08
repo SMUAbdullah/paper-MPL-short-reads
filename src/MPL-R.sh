@@ -30,7 +30,7 @@ genome_start=1                   # starting index of genome
 genome_end=500                   # ending index of genome
 maximum_sequence_length=1500     # maximum length of the sequence. User is welcome to adjust based on requirement
 maximum_time_points=40 	         # maximum number of time points. User is welcome to adjust based on requirement
-gamma=10 		                     # regularization parameter
+gamma=10 		                 # regularization parameter
 thresh=0.01                      # threshold below which trajectories are considered noise
 #--------------------------------------------------------------------
 for patient in ${patients[@]}

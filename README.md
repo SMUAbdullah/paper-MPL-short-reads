@@ -28,8 +28,8 @@ The MPL-R pipeline can be found in the directory `src`.
 Example data is present in the directory `data` which needs to be extracted before running the pipeline.
 ### Before running
 - Please ensure all required software (BWA, samtools, Python, MATLAB, and MAFFT) are added to the path and have execution privileges enabled.
-- If running via snakemake (optional), please edit the file `config.yaml` and specify the locations of BWA, samtools, Python, MATLAB, and MAFFT.
-- Please edit the file `src/MPL-R.sh` and specify the locations of Quasirecomb and VarScan.
+- If running via snakemake (optional), please edit the file `config.yaml` and specify the installation locations of BWA, samtools, Python, MATLAB, and MAFFT.
+- Please edit the file `src/MPL-R.sh` and specify the installation locations of Quasirecomb and VarScan.
 - Please check lines 20-34 in the file `src/MPL-R.sh` and edit the variables based on the data in use. If using example data, do not edit these.
 ### Running the pipeline
 - The pipeline can be run on the example data by running the file `src/MPL-R.sh`.

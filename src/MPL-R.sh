@@ -19,7 +19,7 @@ bash_scripts_dir=${main_dir}"bash_scripts/"
 #--------------------------------------------------------------------
 this_set="564"                   # name of the dataset. Helps in naming the files
 protein="synth"                  # name of the protein. Helps in naming the files
-declare -a patients=("p1" ) #("p1" "p2" ) # names of the patients
+declare -a patients=("p1" "p2" ) # names of the patients
 paired_end="false"               # type "true" if reads are paired-end and "false" if reads are single-end
 recombination="false"            # type "true" if the data contains recombination, and "false" otherwise
 bsample_size=5000                # number of reads (or read pairs) in each bootstrap sample. This number should be decided based on the total number of reads in the actual BAM files. Too low a number may cause loss of information
@@ -30,7 +30,7 @@ genome_start=1                   # starting index of genome
 genome_end=500                   # ending index of genome
 maximum_sequence_length=1500     # maximum length of the sequence. User is welcome to adjust based on requirement
 maximum_time_points=40 	         # maximum number of time points. User is welcome to adjust based on requirement
-gamma=10 		         # regularization parameter
+gamma=10 		                     # regularization parameter
 thresh=0.01                      # threshold below which trajectories are considered noise
 #--------------------------------------------------------------------
 for patient in ${patients[@]}

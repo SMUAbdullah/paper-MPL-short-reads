@@ -16,9 +16,7 @@ rule MPL_R:
         export PATH={config[software_paths][anaconda_dir]}:$PATH
         export PATH={config[software_paths][matlab_dir]}:$PATH        
         export PATH={config[software_paths][mafft_dir]}:$PATH
-        # Run from src directory, but output goes to parent
         cd src && bash MPL-R.sh
         
-        # Create completion marker in the original directory
         touch ../MPL-R_completed.txt
         """

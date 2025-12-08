@@ -615,7 +615,7 @@ if(runAnalysisCode)
                 guessOfNonZeroEntriesOfIntCovMtxEpi = ceil((numSitesNTExteded*(numSitesNTExteded+1)/2)*(numSitesNTExteded*(numSitesNTExteded+1)/2)*0.001);
                 guessOfNonZeroEntriesOfvEst345Epi = ceil(numSitesNTExteded*(numSitesNTExteded-1)/2*0.75);
             end
-            if(tp == 1)
+            if(tp == 1) % tell Saqib bhai
                 % MPL
                 lastCovMtx = (q11_sp - q_sp'*q_sp);
                 lastCovMtx(abs(lastCovMtx) < 1e-10) = 0;

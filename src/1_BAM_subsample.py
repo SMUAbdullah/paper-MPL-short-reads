@@ -22,15 +22,15 @@ import os
 import sys
 import subprocess
 
-codefile=sys.argv[1]
-data_dir=sys.argv[2]
-output_dir=sys.argv[3]
-this_set=sys.argv[4]
-patient=sys.argv[5]
-protein=sys.argv[6]
-bsample_size=int(sys.argv[7])
-pc=int(sys.argv[8])
-curr_bsample=int(sys.argv[9])
+codefile="samtools"
+data_dir=sys.argv[1]
+output_dir=sys.argv[2]
+this_set=sys.argv[3]
+patient=sys.argv[4]
+protein=sys.argv[5]
+bsample_size=int(sys.argv[6])
+pc=int(sys.argv[7])
+curr_bsample=int(sys.argv[8])
 
 mainoutdir_main=output_dir+'bsamples'+'/'
 if(not os.path.isdir(mainoutdir_main)):

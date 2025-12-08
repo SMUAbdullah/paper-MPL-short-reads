@@ -11,6 +11,8 @@ protein=sys.argv[7]
 bsample_size=int(sys.argv[8])
 pc=int(sys.argv[9])
 curr_bsample=int(sys.argv[10])
+paired_end=sys.argv[11]
+recombination=sys.argv[12]
 K=2 # number of generator sequences for Quasirecomb
 
 mainoutdir_main=output_dir+'reconstruction_scripts'
@@ -48,6 +50,16 @@ if(not os.path.isdir(mainoutdir_call0)):
 mainoutdir_call=mainoutdir_call0+this_set
 if(not os.path.isdir(mainoutdir_call)):    
     os.mkdir(mainoutdir_call)
+
+if(paired_end=="true"):
+    pe=''
+else:
+    pe=' -unpaired'
+
+if(recombination=="true"):
+    rc=''
+else:
+    rc=' -noRecomb'
     
 maindir=data_dir+'bsamples'+'/'+this_set+'/'+this_set+'_ss'+str(pc)+'_bsample'+str(curr_bsample)+'/'+patient+'/'+protein
 mainfile_name=mainoutdir_call+'/'+this_set+'_ss'+str(pc)+'_bsample'+str(curr_bsample)+'_'+patient+'_'+protein+'_'+'reconstruction_call.sh'
@@ -74,7 +86,7 @@ for dirname in os.listdir(maindir):
     fileID.write('\n')
     fileID.write('TIMEFORMAT='+''+'%3R'+'')
     fileID.write('\n')
-    fileID.write('{ time java -jar '+quasirecomb+' -i "'+source_file+'" -noRecomb -unpaired -K '+str(K)+' 2>1 ; } 2>> "'+dest_file_log+'_recons_time.txt"')
+    fileID.write('{ time java -jar '+quasirecomb+' -i "'+source_file+'"'+rc+pe+' -K '+str(K)+' 2>1 ; } 2>> "'+dest_file_log+'_recons_time.txt"')
     fileID.write('\n')
     fileID.write('rm -rf 1')
     fileID.write('\n')

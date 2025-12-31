@@ -1,10 +1,5 @@
 #!/bin/sh
 
-# Add paths to required software
-#--------------------------------------------------------------------
-quasirecomb_loc="/path/to/QuasiRecomb.jar"
-varscan_loc="/path/to/VarScan.v2.3.9.jar"
-#--------------------------------------------------------------------
 # Directory declarations, no need to edit
 #--------------------------------------------------------------------
 cd ..
@@ -51,7 +46,7 @@ done
 #--------------------------------------------------------------------
 cd $script_dir
 for((curr_bsample=$first_bsample;curr_bsample<=$num_bsample;curr_bsample++));
-do python 2_reconstruction_files_gen.py $quasirecomb_loc $output_dir $bash_scripts_dir $logs_dir $this_set $patient $protein $bsample_size $bsample_size_percentage $curr_bsample $paired_end $recombination
+do python 2_reconstruction_files_gen.py $output_dir $bash_scripts_dir $logs_dir $this_set $patient $protein $bsample_size $bsample_size_percentage $curr_bsample $paired_end $recombination
 done
 #--------------------------------------------------------------------
 # Perform population reconstruction on the bootstrap samples (this is a time consuming step, and it is highly recommended that it be performed in parallel to save computation time)
@@ -90,7 +85,7 @@ matlab -nodisplay -nojvm -nosplash -nodesktop -r "QR_pipeline_func_2_5(\"${data_
 for patient in ${patients[@]}
 do
 cd $script_dir
-./6_mut_aft.sh $data_dir $output_dir $this_set $patient $protein $varscan_loc
+./6_mut_aft.sh $data_dir $output_dir $this_set $patient $protein
 done
 #--------------------------------------------------------------------
 # MPL estimation

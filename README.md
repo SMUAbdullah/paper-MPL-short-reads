@@ -1,5 +1,5 @@
 # Overview
-This repository contains the MPL-R pipeline and the codes and data for reproducting the results presented in the manuscript
+This repository contains the MPL-R pipeline and an example dataset.
 
 ### Linkage-aware inference of fitness from short-read time-series genomic data  
 Syed Muhammad Umer Abdullah<sup>1,2†</sup>, Muhammad Saqib Sohail<sup>1,3,†</sup>, Raymond H. Y. Louie<sup>1,4,5</sup>, Yanni Sun<sup>2</sup>, John P. Barton<sup>6,7‡</sup>, and Matthew R. McKay<sup>1,8,9,10,11\*‡</sup>

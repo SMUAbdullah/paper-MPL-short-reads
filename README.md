@@ -21,7 +21,7 @@ Syed Muhammad Umer Abdullah<sup>1,2†</sup>, Muhammad Saqib Sohail<sup>1,3,†<
 
 ## MPL-R pipeline
 
-### Required software
+### Dependencies
 > [samtools 1.8](https://github.com/samtools/samtools/releases/tag/1.8)  
 > [Quasirecomb](https://github.com/cbg-ethz/QuasiRecomb)  
 > [BWA-0.7.17](https://github.com/lh3/bwa/releases/tag/v0.7.17)  
@@ -29,11 +29,10 @@ Syed Muhammad Umer Abdullah<sup>1,2†</sup>, Muhammad Saqib Sohail<sup>1,3,†<
 > [Python 3.11.5](https://www.python.org/downloads/) with [pysam](https://pypi.org/project/pysam/) and [numpy](https://pypi.org/project/numpy/) libraries  
 > [MATLAB R2021b](https://www.mathworks.com/products/get-matlab.html) with [Bioinformatics toolbox](https://www.mathworks.com/products/bioinfo.html)  
 > [VarScan v2.3.9](https://sourceforge.net/projects/varscan/files/VarScan.v2.3.9.jar/download)  
-### Optional software
-> [snakemake](https://snakemake.readthedocs.io/en/stable/getting_started/installation.html) (Only required if running the pipeline via snakemake)
+> [snakemake](https://snakemake.readthedocs.io/en/stable/getting_started/installation.html) (Optioal. Only required if running the pipeline via snakemake)
 ### Installation
-- Please ensure all required software (BWA, samtools, Python, MATLAB, and MAFFT) are added to the path and have execution privileges enabled.
-- The required software (except MATLAB) can be optionally installed via the following commands
+- The dependencies can be installed via the provided links.
+- The dependencies (except MATLAB) can be optionally installed via the following commands:
 ```console
 conda create -n mplr python==3.11.5
 conda activate mplr
@@ -51,8 +50,9 @@ conda install bioconda::bwa==0.7.17
 conda install bioconda::mafft
 ```
 ### Example data
-Example data is present in the directory `data` which needs to be extracted before running the pipeline.
+Example data is present as `data/reads.zip` and needs to be extracted into the directory `data` before running the pipeline.
 ### Running the pipeline
+- Execution privileges can be set by `chmod -R 700 paper-MPL-short-reads-master`.
 - The pipeline can be run on the example data by running the file `src/MPL-R.sh`.
 - The pipeline can also be run via snakemake by typing `snakemake --cores n` in the main directory, where `n` is the number of available CPU cores.
 ### Output files
@@ -62,7 +62,7 @@ Example data is present in the directory `data` which needs to be extracted befo
 - Two files, `s_MPL_R_*.txt` and `s_MPL_iden_*.txt`, are generated for the selection coefficient estimates for each patient.
 - `s_MPL_R_*.txt` stores the selection coefficients estimated by considering genetic linkage, and `s_MPL_iden_*.txt` stores the selection coefficients estimated by ignoring genetic linkage.
 ### Running on user-supplied data
-- Please check lines 20-34 in the file `src/MPL-R.sh` and edit the variables based on the data in use.
+- Before running the pipeline on user-supplied data, please check lines 20-34 in the file `src/MPL-R.sh` and edit the variables based on the data in use.
 ### Operating system
 All scripts were written and tested on a Linux based Operating System
 ### Known issues and troubleshooting

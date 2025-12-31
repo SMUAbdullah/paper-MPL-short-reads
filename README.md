@@ -32,7 +32,7 @@ Syed Muhammad Umer Abdullah<sup>1,2†</sup>, Muhammad Saqib Sohail<sup>1,3,†<
 > [snakemake](https://snakemake.readthedocs.io/en/stable/getting_started/installation.html) (Optioal. Only required if running the pipeline via snakemake)
 ### Installation
 - The dependencies can be installed via the provided links.
-- The dependencies (except MATLAB) can be optionally installed via the following commands:
+- The dependencies (except MATLAB) can also be installed via the following commands:
 ```console
 conda create -n mplr python==3.11.5
 conda activate mplr

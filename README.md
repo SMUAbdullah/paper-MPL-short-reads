@@ -48,6 +48,7 @@ conda install bioconda::varscan
 conda install bioconda::quasirecomb
 conda install bioconda::bwa==0.7.17
 conda install bioconda::mafft
+conda install bioconda::snakemake
 ```
 ### Example data
 Example data is present as `data/reads.zip` and needs to be extracted into the directory `data` before running the pipeline.

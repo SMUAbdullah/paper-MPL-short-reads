@@ -29,7 +29,7 @@ Syed Muhammad Umer Abdullah<sup>1,2†</sup>, Muhammad Saqib Sohail<sup>1,3,†<
 > [Python 3.11.5](https://www.python.org/downloads/) with [pysam](https://pypi.org/project/pysam/) and [numpy](https://pypi.org/project/numpy/) libraries  
 > [MATLAB R2021b](https://www.mathworks.com/products/get-matlab.html) with [Bioinformatics toolbox](https://www.mathworks.com/products/bioinfo.html)  
 > [VarScan v2.3.9](https://sourceforge.net/projects/varscan/files/VarScan.v2.3.9.jar/download)  
-> [snakemake](https://snakemake.readthedocs.io/en/stable/getting_started/installation.html) (Optioal. Only required if running the pipeline via snakemake)
+> [snakemake](https://snakemake.readthedocs.io/en/stable/getting_started/installation.html) (Optional. Only required if running the pipeline via snakemake)
 ### Installation
 - The dependencies can be installed via the provided links.
 - The dependencies (except MATLAB) can also be installed via the following commands:

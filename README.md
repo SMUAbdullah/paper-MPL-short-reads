@@ -81,14 +81,19 @@ For queries or comments, please email at [umer_973@hotmail.com](mailto:umer_973@
 ## Citation
 MPL-R can be cited as
 - Abdullah, S. M., Sohail, M. S., Louie, R. H., Sun, Y., Barton, J. P., & McKay, M. R. (2026). Linkage-aware inference of fitness from short-read time-series genomic data. _Virus Evolution_, **12**(1), veag027. https://doi.org/10.1093/ve/veag027
+
 Software tools used in the MPL-R pipeline can be cited as
 **Quasirecomb**
 - Töpfer A, Zagordi O, Prabhakaran S _et al._ Probabilistic inference of viral quasispecies subject to recombination. _J Comput Biol_ 2013;**20**:113–23. https://doi.org/10.1089/cmb.2012.0232
+
 **SAMtools**
 - Li H, Handsaker B, Wysoker A et al. The sequence alignment/map format and SAMtools. _Bioinform._ 2009;**25**:2078–9. https://doi.org/10.1093/bioinformatics/btp352
+
 **BWA**
 - Li H. Aligning sequence reads, clone sequences and assembly contigs with BWA-MEM. 2013. arXiv preprint arXiv:1303.3997
+
 **MAFFT**
 - Katoh, K., Misawa, K., Kuma, K. I., & Miyata, T. (2002). MAFFT: a novel method for rapid multiple sequence alignment based on fast Fourier transform. _Nucleic acids research_, **30**(14), 3059-3066. https://doi.org/10.1093/nar/gkf436
+
 **VarScan**
 - Koboldt, D. C., Chen, K., Wylie, T. _et al._ (2009). VarScan: variant detection in massively parallel sequencing of individual and pooled samples. Bioinformatics, 25(17), 2283-2285. https://doi.org/10.1093/bioinformatics/btp373

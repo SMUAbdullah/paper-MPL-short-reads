@@ -83,6 +83,7 @@ MPL-R can be cited as
 - Abdullah, S. M., Sohail, M. S., Louie, R. H., Sun, Y., Barton, J. P., & McKay, M. R. (2026). Linkage-aware inference of fitness from short-read time-series genomic data. _Virus Evolution_, **12**(1), veag027. https://doi.org/10.1093/ve/veag027
 
 Software tools used in the MPL-R pipeline can be cited as
+
 **Quasirecomb**
 - Töpfer A, Zagordi O, Prabhakaran S _et al._ Probabilistic inference of viral quasispecies subject to recombination. _J Comput Biol_ 2013;**20**:113–23. https://doi.org/10.1089/cmb.2012.0232
 

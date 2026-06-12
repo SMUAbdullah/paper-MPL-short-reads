@@ -98,3 +98,6 @@ Software tools used in the MPL-R pipeline can be cited as
 
 **VarScan**
 - Koboldt, D. C., Chen, K., Wylie, T. _et al._ (2009). VarScan: variant detection in massively parallel sequencing of individual and pooled samples. Bioinformatics, 25(17), 2283-2285. https://doi.org/10.1093/bioinformatics/btp373
+
+**MPL**
+- Sohail, M. S., Louie, R. H., McKay, M. R. & Barton, J. P. (2021). MPL resolves genetic linkage in fitness inference from complex evolutionary histories. _Nat. biotechnology_ **39**, 472–479. https://doi.org/10.1038/s41587-020-0737-3

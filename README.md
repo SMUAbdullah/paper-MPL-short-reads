@@ -67,6 +67,7 @@ Example data is present as `data/reads.zip` and needs to be extracted into the d
 ### Operating system
 All scripts were written and tested on a Linux based Operating System
 ### Known issues and troubleshooting
+- Snakemake may cause issues when running inside the python==3.11.5 environment. It is recommended to install it outside the `SLAFIT` environment.
 - Newer versions of samtools may have compatibility issues with the pipeline. It is highly recommended to use the exact version specified in the section `Required software`.
 - The naming convention for the input directories is `data/reads/MSA/<patient>/<protein>`, as demonstrated in the naming of the example data. Any deviation from this might lead to errors.
 - The naming convention for the input FASTQ files is `<patient>_<protein>_t<time-point>.fq`, as demonstrated in the naming of the example data.  Any deviation from this might lead to errors.

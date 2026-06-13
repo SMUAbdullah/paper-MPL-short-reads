@@ -34,6 +34,7 @@ Syed Muhammad Umer Abdullah<sup>1,2†</sup>, Muhammad Saqib Sohail<sup>1,3,†<
 - The dependencies can be installed via the provided links.
 - The dependencies (except MATLAB) can also be installed via the following commands:
 ```console
+conda install bioconda::snakemake
 conda create -n mplr python==3.11.5
 conda activate mplr
 conda update conda
@@ -48,7 +49,6 @@ conda install bioconda::varscan
 conda install bioconda::quasirecomb
 conda install bioconda::bwa==0.7.17
 conda install bioconda::mafft
-conda install bioconda::snakemake
 ```
 ### Example data
 Example data is present as `data/reads.zip` and needs to be extracted into the directory `data` before running the pipeline.

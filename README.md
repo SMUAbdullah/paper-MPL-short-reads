@@ -81,7 +81,7 @@ This repository is dual licensed as [GPL-3.0](https://github.com/SMUAbdullah/pap
 For queries or comments, please email at [umer_973@hotmail.com](mailto:umer_973@hotmail.com).
 ## Citation
 MPL-R can be cited as
-- Abdullah, S. M. U., Sohail, M. S., Louie, R. H. Y., Sun, Y., Barton, J. P., & McKay, M. R. (2026). Linkage-aware inference of fitness from short-read time-series genomic data. _Virus Evolution_, **12**(1), veag027. https://doi.org/10.1093/ve/veag027
+- Abdullah, S. M. U., Sohail, M. S., Louie, R. H. Y., Sun, Y., Barton, J. P., and McKay, M. R. (2026). Linkage-aware inference of fitness from short-read time-series genomic data. _Virus Evolution_, **12**(1), veag027. https://doi.org/10.1093/ve/veag027
 
 Software tools used in the MPL-R pipeline can be cited as
 
